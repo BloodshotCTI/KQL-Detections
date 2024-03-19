@@ -1,0 +1,5 @@
+//Detects creation of schtasks.exe process and creation of scheduled task, "Calendar Checker".
+let task_ = dynamic(["query", "create", "delete"]);
+DeviceProcessEvents
+| where ProcessCommandLine has_any(task_)
+and ProcessCommandLine contains @"/tn CalendarChecker"
